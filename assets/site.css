@@ -1,4 +1,4 @@
-/* マイチャペ公式サイトの CSS。docs/site-src/css/ と docs/lp/lp_base.css・manga.css から、tools/build_site.mjs が作る。直接は、編集しない */
+/* マイチャペ公式サイトの CSS。docs/site-src/css/(lp_base.css・manga.css・page-top.css・site-parts.css)から、tools/build_site.mjs が作る。直接は、編集しない */
 
 /* マイチャペ LP 共通(2026-10-20)。デザインのトーンは「Downloads\マイチャぺ-guide2.png」(ブランドガイド)。
    - 背景: 左の青(#a0d1e4 前後)→ 右のミント(#acfae9 前後)のグラデーション。下に向かって白へ抜ける
@@ -84,7 +84,7 @@ footer p + p { margin-top: 6px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn { transition: none; } }
 
 
-/* 縦に読む4コマ漫画のコマ。lp_manga.html と lp_a_pop.html で共有(2026-10-21 に、静止画の版へ)。
+/* 縦に読む4コマ漫画のコマ。公式サイトのトップで使う(古い見本 docs/lp/archive/v3_5案とマンガ見本/lp_manga.html とも共通だった)(2026-10-21 に、静止画の版へ)。
    絵(img/manga1〜4.jpg)は白背景。コマの枠・せりふ・効果音・動きは、ここと manga.js で足す。 */
 .manga { width: min(440px, 100%); margin: 0 auto; padding: 8px max(14px, env(safe-area-inset-left, 0px)) 40px; display: grid; gap: 26px; }
 .panel { position: relative; border: 4px solid var(--ink); border-radius: 6px; background: #fff; overflow: hidden; }
@@ -190,6 +190,27 @@ footer p + p { margin-top: 6px; }
   .qr { display: flex; flex: none; align-items: center; gap: 10px; white-space: nowrap; font-size: .8rem; font-weight: 700; line-height: 1.5; }
   .qr img { width: 88px; height: 88px; background: #fff; border-radius: 12px; padding: 4px; border: 2px solid var(--line); }
 }
+
+/* スマホ幅(760px 未満)の整え方(2026-10-21 持ち主の指示。PC はそのまま) */
+@media (max-width: 759px) {
+  /* ① 一番上のスマホ画像は出さない。文字は中央 */
+  .hero .stage { display: none; }
+  .hero-grid { text-align: center; justify-items: center; }
+  .hero .lead { margin-left: auto; margin-right: auto; }
+  .hero .cta { justify-content: center; }
+  /* ② 数字の箱の中身を中央に */
+  .stat { text-align: center; justify-items: center; }
+  /* ③ できること: 枠をなくし、画面の絵を中央に大きく置き、その下に番号と文 */
+  .fe, .fe.fe-text { grid-template-columns: 1fr; background: transparent; border: 0; border-radius: 0; padding: 0; gap: 14px; text-align: center; justify-items: center; }
+  .fe .shot { order: -1; width: 100%; }
+  .fe .shot .sp2 { width: min(86%, 300px); max-width: none; margin: 0 auto; }
+  .fe h3 { font-size: 1.3rem; }
+  .fe p { font-size: 1.02rem; }
+  .feat { gap: 52px; }
+}
+
+/* 幅が狭いスマホ(360px 未満)では、一番上の見出しが、変なところで折れないように */
+@media (max-width: 359px) { .hero h1 { font-size: 1.15rem; letter-spacing: .03em; } }
 
 
 /* 全ページ共通の部品(ヘッダー・フッター)と、文書ページ・サポートの見た目。色と形は lp_base.css(ブランドガイド)から */
