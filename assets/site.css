@@ -123,8 +123,8 @@ footer p + p { margin-top: 6px; }
 .hero .cta { margin-top: 26px; }
 .stage { position: relative; display: grid; place-items: center; min-height: 380px; }
 .sp { position: relative; width: 218px; aspect-ratio: 9 / 18.5; background: #fff; border: 7px solid var(--ink); border-radius: 38px; transform: rotate(3deg); overflow: hidden; box-shadow: 0 10px 0 rgba(90,90,90,.14); }
-.sp { display: grid; place-items: center; padding-top: 18px; }
-.sp img { display: block; width: 70%; height: auto; }
+.sp { padding: 0; }
+.sp img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .sp::before { content: ""; position: absolute; top: 8px; left: 50%; width: 62px; height: 16px; border-radius: 99px; background: var(--ink); transform: translateX(-50%); z-index: 2; }
 .stage .tag { position: absolute; right: 8%; top: 70px; transform: rotate(8deg); background: var(--yellow); z-index: 2; }
 
@@ -194,23 +194,52 @@ footer p + p { margin-top: 6px; }
 /* スマホ幅(760px 未満)の整え方(2026-10-21 持ち主の指示。PC はそのまま) */
 @media (max-width: 759px) {
   /* ① 一番上のスマホ画像は出さない。文字は中央 */
-  .hero .stage { display: none; }
+  /* スマホ幅: 画面の上半分だけを、水色グラデの下の境目(波)から、ぴょこっと出す */
+  .hero .stage { display: grid; place-items: start center; min-height: 0; height: 255px; overflow: visible; width: 100%; margin-top: 4px; }
+  .hero .sp { transform: none; width: min(252px, 70vw); height: auto; aspect-ratio: auto; box-shadow: none; }
+  .hero .sp img { height: auto; }
+  .hero-grid { padding-bottom: 0; gap: 22px; }
+  .hero > .w { padding-bottom: 0; }
+  .hero .wave { position: relative; z-index: 2; margin-top: -26px; }
   .hero-grid { text-align: center; justify-items: center; }
   .hero .lead { margin-left: auto; margin-right: auto; }
   .hero .cta { justify-content: center; }
-  /* ② 数字の箱の中身を中央に */
-  .stat { text-align: center; justify-items: center; }
   /* ③ できること: 枠をなくし、画面の絵を中央に大きく置き、その下に番号と文 */
   .fe, .fe.fe-text { grid-template-columns: 1fr; background: transparent; border: 0; border-radius: 0; padding: 0; gap: 14px; text-align: center; justify-items: center; }
   .fe .shot { order: -1; width: 100%; }
   .fe .shot .sp2 { width: min(86%, 300px); max-width: none; margin: 0 auto; }
-  .fe h3 { font-size: 1.3rem; }
+  .fe h3 { font-size: min(1.3rem, 5vw); }
   .fe p { font-size: 1.02rem; }
   .feat { gap: 52px; }
 }
 
-/* 幅が狭いスマホ(360px 未満)では、一番上の見出しが、変なところで折れないように */
-@media (max-width: 359px) { .hero h1 { font-size: 1.15rem; letter-spacing: .03em; } }
+
+/* 数字の箱の中身は、PC もスマホも中央(2026-10-21 持ち主) */
+.stat { text-align: center; justify-items: center; }
+.mbr { display: none; }
+
+/* スマホ幅の一番上の文字: 見出しは2行のまま大きく、説明は幅に合わせて大きく(320・390・430px で確認) */
+@media (max-width: 759px) {
+  .hero h1 { font-size: 6.8vw; letter-spacing: .05em; white-space: nowrap; }
+  .hero .lead { font-size: 4.7vw; letter-spacing: .03em; }
+  .mbr { display: inline; }
+  .hero .wave { margin-top: -48px; margin-bottom: -1px; }
+  .hero .sp { -webkit-mask-image: linear-gradient(#000 0, #000 188px, transparent 250px); mask-image: linear-gradient(#000 0, #000 188px, transparent 250px); }
+  /* 画面は、波の下まで続けて、次の区画(薄い水色)の下に隠す。直線で切らないので、波の下に隙間のグラデが見えない */
+  .hero { position: relative; z-index: 1; }
+  .worry { position: relative; z-index: 2; }
+}
+/* 幅が狭いスマホ(360px 未満)は、ボタンの文字を1行に */
+@media (max-width: 359px) {
+  .btn { padding: 14px 18px; font-size: .85rem; white-space: nowrap; }
+}
+
+/* 幅が狭いスマホ(360px 未満 = 320px など): 画面を小さくして横を切らない・見出しと箱の文字を1行に収める */
+@media (max-width: 359px) {
+  .hero .sp { width: 60vw; }
+  .worry .q, .worry .sub2 { font-size: 5.7vw; }
+  .stat p { font-size: .88rem; }
+}
 
 
 /* 全ページ共通の部品(ヘッダー・フッター)と、文書ページ・サポートの見た目。色と形は lp_base.css(ブランドガイド)から */
