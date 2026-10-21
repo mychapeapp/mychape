@@ -109,6 +109,12 @@ footer p + p { margin-top: 6px; }
   .panel .art.bump img { animation: none; }
 }
 
+/* 文の改行は、幅ごとに変える: b-s = 幅360px未満 / b-m = 360〜759px / b-l = 760px以上(PC) */
+.say br.b-s, .say br.b-m, .say br.b-l, summary br.b-s, summary br.b-m { display: none; }
+@media (max-width: 359px) { .say br.b-s, summary br.b-s { display: inline; } }
+@media (min-width: 360px) and (max-width: 759px) { .say br.b-m, summary br.b-m { display: inline; } }
+@media (min-width: 760px) { .say br.b-l { display: inline; } }
+
 
 /* 構成(2026-10-21 持ち主の指示で改訂): ファーストビュー(スマホだけ)→ 波 → お悩み(数字と出典 → 4コマ漫画 → 「解決できます」の札)→ できること3つ → 使い方 → 見学との違い → FAQ → 締め
    トーンはブランドガイド(lp_base.css)。出典つきの数字は、一次資料(報告書のページ)で確かめたものだけ。 */
@@ -136,7 +142,7 @@ footer p + p { margin-top: 6px; }
 .stat .n small { font-size: 1rem; margin-left: 2px; }
 .stat .n span { background: linear-gradient(transparent 62%, var(--yellow) 62%); }
 .stat p { font-weight: 700; }
-.stat .src { font-size: .74rem; color: var(--muted); font-weight: 400; line-height: 1.6; }
+.stat .src { font-size: .64rem; color: var(--muted); font-weight: 400; line-height: 1.6; }
 .stat .src a { color: var(--ink); }
 .worry .sub2 { margin-top: 48px; }
 .manga { margin-top: 8px; }
@@ -182,7 +188,7 @@ footer p + p { margin-top: 6px; }
   .fe .shot .sp2 { max-width: 290px; }
 }
 
-.fe .note { font-size: .86rem; margin-top: 10px; line-height: 1.7; }
+.fe .note { font-size: .72rem; margin-top: 10px; line-height: 1.7; }
 /* ファーストビューのボタンの右に、PC のときだけQRコード(スマホで見ている人には、ボタンがあるので出さない) */
 .hero .cta { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .qr { display: none; width: auto; height: auto; background: none; border: 0; border-radius: 0; }
@@ -195,8 +201,9 @@ footer p + p { margin-top: 6px; }
 @media (max-width: 759px) {
   /* ① 一番上のスマホ画像は出さない。文字は中央 */
   /* スマホ幅: 画面の上半分だけを、水色グラデの下の境目(波)から、ぴょこっと出す */
-  .hero .stage { display: grid; place-items: start center; min-height: 0; height: 255px; overflow: visible; width: 100%; margin-top: 4px; }
-  .hero .sp { transform: none; width: min(252px, 70vw); height: auto; aspect-ratio: auto; box-shadow: none; }
+  .hero { --pw: clamp(240px, 78vw, 330px); }
+  .hero .stage { display: grid; place-items: start center; min-height: 0; height: calc(var(--pw) * 1.012); overflow: visible; width: 100%; margin-top: 4px; }
+  .hero .sp { transform: none; width: var(--pw); height: auto; aspect-ratio: auto; box-shadow: none; }
   .hero .sp img { height: auto; }
   .hero-grid { padding-bottom: 0; gap: 22px; }
   .hero > .w { padding-bottom: 0; }
@@ -224,7 +231,7 @@ footer p + p { margin-top: 6px; }
   .hero .lead { font-size: 4.7vw; letter-spacing: .03em; }
   .mbr { display: inline; }
   .hero .wave { margin-top: -48px; margin-bottom: -1px; }
-  .hero .sp { -webkit-mask-image: linear-gradient(#000 0, #000 188px, transparent 250px); mask-image: linear-gradient(#000 0, #000 188px, transparent 250px); }
+  .hero .sp { -webkit-mask-image: linear-gradient(#000 0, #000 calc(var(--pw) * .746), transparent calc(var(--pw) * .992)); mask-image: linear-gradient(#000 0, #000 calc(var(--pw) * .746), transparent calc(var(--pw) * .992)); }
   /* 画面は、波の下まで続けて、次の区画(薄い水色)の下に隠す。直線で切らないので、波の下に隙間のグラデが見えない */
   .hero { position: relative; z-index: 1; }
   .worry { position: relative; z-index: 2; }
@@ -236,10 +243,30 @@ footer p + p { margin-top: 6px; }
 
 /* 幅が狭いスマホ(360px 未満 = 320px など): 画面を小さくして横を切らない・見出しと箱の文字を1行に収める */
 @media (max-width: 359px) {
-  .hero .sp { width: 60vw; }
   .worry .q, .worry .sub2 { font-size: 5.7vw; }
-  .stat p { font-size: .88rem; }
+  .stat { padding: 18px 12px; }
+  .stat p { font-size: .93rem; }
+  .stat .n { font-size: 3.1rem; }
+  .steps li { padding: 14px; grid-template-columns: 44px 1fr; gap: 10px; }
+  summary { font-size: .92rem; }
+  .panel .say { font-size: 4.7vw; letter-spacing: .04em; padding-left: 10px; padding-right: 10px; }
 }
+
+.nb { white-space: nowrap; }
+/* スマホ幅: 出典を小さくした分、上の数字と説明を大きく */
+@media (min-width: 360px) and (max-width: 759px) {
+  .stat .n { font-size: 3.3rem; }
+  .stat p { font-size: 1.1rem; }
+}
+
+/* スマホ幅: 出典と01の注釈を、さらに小さく(あまり読まれなくてよい) */
+@media (max-width: 759px) {
+  .stat .src { font-size: .56rem; }
+  .fe .note { font-size: .62rem; }
+}
+
+/* 幅が狭いスマホ(360px 未満)では、説明文の2行目(18文字)が1行に収まるように、少し小さく */
+@media (max-width: 359px) { .hero .lead { font-size: 4.4vw; } }
 
 
 /* 全ページ共通の部品(ヘッダー・フッター)と、文書ページ・サポートの見た目。色と形は lp_base.css(ブランドガイド)から */

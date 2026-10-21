@@ -7,13 +7,13 @@ window.mountManga = function (rootId, opts) {
   if (!root) return;
   var base = opts.imgBase || 'img/';
   var panels = [
-    { img: 'manga1.jpg', say: '式場に行く前に、費用の相場だけでも知りたいな…', sfx: 'うーん…', r: -6,
+    { img: 'manga1.jpg', say: '式場に行く前に、<br class="b-s b-l">費用の<br class="b-m">相場だけでも<br class="b-s">知りたいな…', sfx: 'うーん…', r: -6,
       alt: 'ソファに並んで座るふたりが、一緒にスマホを見ている。頭の上の吹き出しに、円の記号とはてなマーク。' },
-    { img: 'manga2.jpg', say: '見学に時間を取られて、ほかの式場まで回れなかったら…', sfx: 'くたくた', r: -6,
+    { img: 'manga2.jpg', say: '見学に時間を取られて、<br>ほかの式場まで回れなかった…', sfx: 'くたくた', r: -6,
       alt: '疲れたふたりが立っている。遠くにチャペルが見え、頭の上に時計と汗のしずく。' },
     { img: 'manga3.jpg', say: 'いろんな式場を、一目で比べられたらいいのにな…', sfx: 'うーむ…', r: -5,
       alt: '資料の山の前で、ふたりが紙を見て、はてなマークを浮かべて困っている。' },
-    { img: 'manga4.jpg', say: '見積もりより、最終的な金額が上がったらどうしよう…!?', sfx: 'ガーン!', r: 7,
+    { img: 'manga4.jpg', say: '見積もりより、<br class="b-s">最終的な金額が<br>上がったらどうしよう…!?', sfx: 'ガーン!', r: 7,
       alt: '見積書を見て驚くふたり。上に、円の記号とびっくりマークが光っている。' }
   ];
   var html = '';
@@ -30,7 +30,7 @@ window.mountManga = function (rootId, opts) {
     '<p style="font-weight:700">人数や予算などの条件を入れるだけ。気になる式場の概算の見積もりが、内訳つきで出ます。</p>' +
     '<a class="btn" href="https://apps.apple.com/app/apple-store/id1615359139?pt=124311441&amp;ct=lp&amp;mt=8">アプリをダウンロードする</a>' +
     '<p class="small" style="color:var(--ink)">iPhone アプリ・無料</p></section>';
-  root.innerHTML = html;
+  if (!root.querySelector('.panel')) root.innerHTML = html; // 公開サイトでは、ビルドが文と絵を HTML に入れてある(検索エンジンが文を読めるように)。ここでは動きだけ足す
 
   // 押す(タップ)と、絵がはねて、効果音の文字がもう一度出る
   Array.prototype.forEach.call(root.querySelectorAll('.art'), function (a) {
