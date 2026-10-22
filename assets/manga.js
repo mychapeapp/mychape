@@ -7,13 +7,13 @@ window.mountManga = function (rootId, opts) {
   if (!root) return;
   var base = opts.imgBase || 'img/';
   var panels = [
-    { img: 'manga1.jpg', say: '式場に行く前に、<br class="b-s b-l">費用の<br class="b-m">相場だけでも<br class="b-s">知りたいな…', sfx: 'うーん…', r: -6,
+    { img: 'manga1.webp', say: '式場に行く前に、<br class="b-s b-l">費用の<br class="b-m">相場だけでも<br class="b-s">知りたいな…', sfx: 'うーん…', r: -6,
       alt: 'ソファに並んで座るふたりが、一緒にスマホを見ている。頭の上の吹き出しに、円の記号とはてなマーク。' },
-    { img: 'manga2.jpg', say: '見学に時間を取られて、<br>ほかの式場まで回れなかった…', sfx: 'くたくた', r: -6,
+    { img: 'manga2.webp', say: '見学に時間を取られて、<br>ほかの式場まで回れなかった…', sfx: 'くたくた', r: -6,
       alt: '疲れたふたりが立っている。遠くにチャペルが見え、頭の上に時計と汗のしずく。' },
-    { img: 'manga3.jpg', say: 'いろんな式場を、一目で比べられたらいいのにな…', sfx: 'うーむ…', r: -5,
+    { img: 'manga3.webp', say: 'いろんな式場を、一目で比べられたらいいのにな…', sfx: 'うーむ…', r: -5,
       alt: '資料の山の前で、ふたりが紙を見て、はてなマークを浮かべて困っている。' },
-    { img: 'manga4.jpg', say: '見積もりより、<br class="b-s">最終的な金額が<br>上がったらどうしよう…!?', sfx: 'ガーン!', r: 7,
+    { img: 'manga4.webp', say: '見積もりより、<br class="b-s">最終的な金額が<br>上がったらどうしよう…!?', sfx: 'ガーン!', r: 7,
       alt: '見積書を見て驚くふたり。上に、円の記号とびっくりマークが光っている。' }
   ];
   var html = '';
