@@ -293,7 +293,8 @@ footer p + p { margin-top: 6px; }
   .menu-js .sh-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; gap: 0; background: #fff; border-bottom: 2px solid var(--line); padding: 8px 16px 14px; }
   .menu-js .sh-nav.open { display: flex; }
   .menu-js .sh-nav a { padding: 14px 8px; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 1rem; }
-  .menu-js .sh-dl { margin-left: 0; }
+  .menu-js .sh-dl { margin-left: auto; order: 2; }
+  .menu-js .sh-toggle { margin-left: 0; order: 3; }
   .sh-in { gap: 10px; }
   .sh-nav { flex-wrap: wrap; }
 }
