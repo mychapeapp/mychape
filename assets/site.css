@@ -591,6 +591,10 @@ html { scroll-padding-top: 76px; }
   .col-table.stack td::before { content: attr(data-label); display: block; font-size: .75rem; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
 }
 .column.blog h2 { text-wrap: balance; }
+/* 見出しは意味のまとまりごとに折り返す(まとまりの途中では切らない)。「手順①」はスマホでは1行目に置く */
+.column.blog h2 > span { display: inline-block; }
+@media (max-width: 600px) { .column.blog h2 > .st { display: block; } .column.blog h2 { font-size: 4.5vw; letter-spacing: .02em; } .column.blog .col-appcard h2 { font-size: 4.6vw; } }
+@media (max-width: 360px) { .column.blog h2 { font-size: 4.3vw; } }
 
 /* 円グラフ・階段図(見積もりが上がる記事) */
 .col-pie { margin: 16px 0; padding: 20px 12px; border: var(--bd); border-radius: 22px; background: #fff; display: flex; align-items: stretch; justify-content: center; gap: 12px; }
