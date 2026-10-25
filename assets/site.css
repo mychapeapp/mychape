@@ -512,7 +512,7 @@ html { scroll-padding-top: 76px; }
 
 /* コラム: 題名は2行・01〜03はサービス紹介と同じ部品(文字は少し大きく、絵は全体が見えるように) */
 .col-blog-head h1 span { white-space: nowrap; }
-.col-blog-head h1 { font-size: clamp(1.05rem, 5.3vw, 2.2rem); }
+.col-blog-head h1 { font-size: min(clamp(1.05rem, 5.3vw, 2.2rem), calc((100vw - 32px) / 21)); }
 .column.blog .col-appcard { background: #fff; }
 .col-feat { gap: 26px; margin-top: 20px; }
 .col-feat .fe { padding: 24px 16px 24px 20px; }
