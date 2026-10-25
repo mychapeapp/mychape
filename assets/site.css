@@ -595,6 +595,8 @@ html { scroll-padding-top: 76px; }
 .column.blog h2 > span { display: inline-block; }
 @media (max-width: 600px) { .column.blog h2 > .st { display: block; } .column.blog h2 { font-size: 4.5vw; letter-spacing: .02em; } .column.blog .col-appcard h2 { font-size: 4.6vw; } }
 @media (max-width: 360px) { .column.blog h2 { font-size: 4.3vw; } }
+/* 題名: スマホでは本文の幅が上限。意味のまとまりでは折らず、幅いっぱいに使って2行におさめる(文字の大きさで調整) */
+@media (max-width: 600px) { .col-blog-head h1 span { display: inline; white-space: normal; } .col-blog-head h1 { font-size: min(clamp(1.05rem, 5.3vw, 2.2rem), calc((100vw - 32px) / 19)); } }
 
 /* 円グラフ・階段図(見積もりが上がる記事) */
 .col-pie { margin: 16px 0; padding: 20px 12px; border: var(--bd); border-radius: 22px; background: #fff; display: flex; align-items: stretch; justify-content: center; gap: 12px; }
